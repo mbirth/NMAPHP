@@ -2,7 +2,7 @@
 
 class NotifyMyAndroid
 {
-	var $_version = '0.0.3-php4';
+	var $_version = '0.0.4';
 	var $_obj_curl = null;
 	var $_return_code;
 	var $_remaining;
@@ -29,7 +29,7 @@ class NotifyMyAndroid
 		//'url'	=>	1000 // Url to attach to the message. (Not yet support by the Android client. Soon!)
 	);
 	
-	function NotifyMyAndroid($apikey=null, $verify=false, $devkey=null, $proxy=null, $userpwd=null)
+	function __construct($apikey=null, $verify=false, $devkey=null, $proxy=null, $userpwd=null)
 	{
 		$curl_info = curl_version();	// Checks for cURL function and SSL version. Thanks Adrian Rollett!
 		if(!function_exists('curl_exec') || empty($curl_info['ssl_version']))
@@ -48,7 +48,7 @@ class NotifyMyAndroid
 	
 	function verify($apikey)
 	{
-		$return = $this->_execute(sprintf($this->_url_verify, $apikey));		
+		$return = $this->_execute(sprintf($this->_url_verify, $apikey));
 		return $this->_response($return);
 	}
 	
@@ -192,5 +192,3 @@ class NotifyMyAndroid
 		}
 	}
 }
-
-?>
